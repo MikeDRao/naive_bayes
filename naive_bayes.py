@@ -130,4 +130,4 @@ def naive_bayes(training_file,test_file):
 
     predict(training_stats, test_set)
 
-naive_bayes('C:/Users/micha/Desktop/Fall 2020/Machine Learning/training_data.txt','C:/Users/micha/Desktop/Fall 2020/Machine Learning/test_data.txt')
+naive_bayes(<training_data.txt>,<test_data.txt>)
