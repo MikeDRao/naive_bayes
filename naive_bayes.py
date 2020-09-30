@@ -27,7 +27,9 @@ def mean(list_numbers):
 # Calculate standard deviation
 def standard_dev(list_numbers):
     avg = mean(list_numbers)
-    variance = sum([(x - avg)**2 for x in list_numbers]) / float(len(list_numbers) - 1)
+    
+    
+    variance = sum([(x - avg)**2 for x in list_numbers]) / (len(list_numbers) -1)
     ret_val = variance**0.5
     if ret_val == 0:
         return 0.01
@@ -112,22 +114,28 @@ def print_training(train_summary):
             print("Class {0}, attribute {1}, mean = {2:.2f}, std = {3:.2f} ".format(key,i + 1,train_summary[key][i][0],train_summary[key][i][1]))
 
 
-def naive_bayes(training_file,test_file):
-    filename = training_file
-    dataset = load_file(filename)
+def naive_bayes():
+    if(len(sys.argv) < 3):
+        print("Insufficient command line args")
+        exit()
 
+    filename = sys.argv[1]
+    test_file = sys.argv[2]
+
+    dataset = load_file(filename)
+    test_set = load_file(sys.argv[2])
+
+    print(dataset)
     for i in range(len(dataset[0])):
         create_floats(dataset, i)
 
     training_stats = class_stats(dataset)
     print_training(training_stats)
 
-    test_set = load_file(test_file)
-
     for i in range(len(test_set[0])):
         create_floats(test_set, i)
 
 
     predict(training_stats, test_set)
-
-naive_bayes(<training_data.txt>,<test_data.txt>)
+if __name__ == '__main__':
+    naive_bayes()
